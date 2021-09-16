@@ -16,6 +16,8 @@ const addVideoNode = (participant, stream) => {
     videoNode.setAttribute('height', 240);
     videoNode.setAttribute('width', 320);
     videoNode.setAttribute('playsinline', true);
+    videoNode.muted = true;
+    videoNode.setAttribute('autoplay', 'autoplay');
 
     // if participant id is not present in the video container list,
     // insert participant id into list and update DOM
@@ -37,9 +39,6 @@ const addVideoNode = (participant, stream) => {
         break;
       }
     }
-
-    videoNode.autoplay = 'autoplay';
-    videoNode.muted = true;
   }
 
   navigator.attachMediaStream(videoNode, stream);
@@ -49,6 +48,7 @@ const removeVideoNode = (participant) => {
   let videoNode = document.getElementById('video-' + participant.id);
   if (videoNode) {
     // remove leaving participant's videonode from the DOM
+    videoNode.srcObject = null; // Prevent memory leak in Chrome
     videoNode.parentNode.removeChild(videoNode);
     for (let i = 0; i < videoContainerList.length; i++) {
       // remove particpant from container list when they leave

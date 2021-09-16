@@ -1,114 +1,50 @@
 // Handle Moving Avatar
 const moveAvatar = (evt, avatar) => {
+  let left = parseInt(avatar.style.left);
+  let top = parseInt(avatar.style.top);
+
   switch (evt.keyCode) {
     case 37:
-      leftArrowPressed(avatar);
+      left -= 5;
       break;
     case 39:
-      rightArrowPressed(avatar);
+      left += 5;
       break;
     case 38:
-      upArrowPressed(avatar);
+      top -= 5;
       break;
     case 40:
-      downArrowPressed(avatar);
+      top += 5;
       break;
+    default:
+      return;
   }
-};
 
-const leftArrowPressed = (avatar) => {
-  if (parseInt(avatar.style.left) - 5 < 0) {
-    // don't allow avatar to move beyond boundary
-    return;
-  } else {
-    // move participant's own avatar
-    avatar.style.left = parseInt(avatar.style.left) - 5 + 'px';
-    let dataPayload = {
+  if (0 <= left && left <= 1000 - 150 && 0 <= top && top <= 800 - 288) {
+    avatar.style.left = left + 'px';
+    avatar.style.top = top + 'px';
+
+    const dataPayload = {
       horizontalPosition: avatar.style.left,
+      verticalPosition: avatar.style.top,
     };
+
     // send command with data of avatar's position to other participants
-    VoxeetSDK.command
-      .send(dataPayload)
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    VoxeetSDK.command.send(dataPayload).catch((err) => console.error(err));
   }
 };
 
-const rightArrowPressed = (avatar) => {
-  if (parseInt(avatar.style.left) + 5 > 1000 - 150) {
-    return;
-  } else {
-    avatar.style.left = parseInt(avatar.style.left) + 5 + 'px';
-    let dataPayload = {
-      horizontalPosition: avatar.style.left,
-    };
-    VoxeetSDK.command
-      .send(dataPayload)
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-};
-
-const upArrowPressed = (avatar) => {
-  if (parseInt(avatar.style.top) - 5 < 0) {
-    return;
-  } else {
-    avatar.style.top = parseInt(avatar.style.top) - 5 + 'px';
-    let dataPayload = {
-      verticalPosition: avatar.style.top,
-    };
-    VoxeetSDK.command
-      .send(dataPayload)
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-};
-
-const downArrowPressed = (avatar) => {
-  if (parseInt(avatar.style.top) + 5 > 800 - 288) {
-    return;
-  } else {
-    avatar.style.top = parseInt(avatar.style.top) + 5 + 'px';
-    let dataPayload = {
-      verticalPosition: avatar.style.top,
-    };
-    VoxeetSDK.command
-      .send(dataPayload)
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-};
-
-const moveAvatarHorizontally = (participantId, leftCoordinate) => {
+const moveAvatarPosition = (participantId, topCoordinate, leftCoordinate) => {
   // find that participant's avatar and update its position in the DOM,
   // using videoContainerList set in video.js
-  let avatarId;
   for (let i = 0; i < videoContainerList.length; i++) {
     if (videoContainerList[i].participantId === participantId) {
-      avatarId = 'avatar-' + i;
+      let avatar = document.getElementById('avatar-' + i);
+      avatar.style.top = topCoordinate;
+      avatar.style.left = leftCoordinate;
+      return;
     }
   }
-  let avatar = document.getElementById(avatarId);
-  avatar.style.left = leftCoordinate;
-};
-
-const moveAvatarVertically = (participantId, topCoordinate) => {
-  let avatarId;
-  for (let i = 0; i < videoContainerList.length; i++) {
-    if (videoContainerList[i].participantId === participantId) {
-      avatarId = 'avatar-' + i;
-    }
-  }
-  let avatar = document.getElementById(avatarId);
-  avatar.style.top = topCoordinate;
 };
 
 // Update conference name in url as user types

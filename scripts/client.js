@@ -23,13 +23,16 @@ VoxeetSDK.conference.on('streamRemoved', (participant, stream) => {
 // Update the position of the avatar belonging to the participant that sent the message
 VoxeetSDK.command.on('received', (participant, message) => {
   let dataParsed = JSON.parse(message);
-  if (dataParsed) {
-    if (dataParsed.horizontalPosition) {
-      moveAvatarHorizontally(participant.id, dataParsed.horizontalPosition);
-    }
-    if (dataParsed.verticalPosition) {
-      moveAvatarVertically(participant.id, dataParsed.verticalPosition);
-    }
+  if (
+    dataParsed &&
+    dataParsed.verticalPosition &&
+    dataParsed.horizontalPosition
+  ) {
+    moveAvatarPosition(
+      participant.id,
+      dataParsed.verticalPosition,
+      dataParsed.horizontalPosition
+    );
   }
 });
 
