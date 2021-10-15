@@ -1,11 +1,11 @@
-# CommandService Avatar App
+# CommandService Avatar App Net Diatom www.aichatforrest.com
 
 Sample implementation for JavaScript (Web) of the CommandService for multiple participants to move avatars across the screen.
 
 ## Getting Started
 
 Replace `CUSTOMER_KEY` and `CUSTOMER_SECRET` inside `client.js` with your own key and secret.
-To run the app locally, open `index.html` in your browser with a live server.
+To run the app locally, open `index.html` in your browser with a live server. Use the Dolby.io site to create credentials. 
 
 ## What's Inside
 
@@ -38,3 +38,8 @@ To run the app locally, open `index.html` in your browser with a live server.
 ### 📄 index.html
 
 - main entry file
+
+Net Diatom
+www.netdiatom.org
+See the chat forrest in action at 
+www.aichatforrest.com
