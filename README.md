@@ -1,6 +1,6 @@
 # CommandService Avatar App Net Diatom www.aichatforest.com
 
-Sample implementation for JavaScript (Web) of the CommandService for multiple participants to move avatars across the screen.
+Team implementation for JavaScript (Web) of the CommandService for multiple participants to move avatars across the screen for our devpost hackathon project
 
 ## Getting Started
 
