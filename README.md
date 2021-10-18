@@ -1,4 +1,4 @@
-# CommandService Avatar App Net Diatom www.aichatforrest.com
+# CommandService Avatar App Net Diatom www.aichatforest.com
 
 Sample implementation for JavaScript (Web) of the CommandService for multiple participants to move avatars across the screen.
 
