@@ -4,14 +4,14 @@ Sample implementation for JavaScript (Web) of the CommandService for multiple pa
 
 ## Getting Started
 
-Replace `CUSTOMER_KEY` and `CUSTOMER_SECRET` inside `client.js` with your own key and secret.
-To run the app locally, open `index.html` in your browser with a live server. Use the Dolby.io site to create credentials. 
+We used the dolby.io api with our own `CUSTOMER_KEY` and `CUSTOMER_SECRET` inside `client.js` with our own key and secret.
+To run the app just visit www.aichatforest.com in your browser. 
 
-## What's Inside
+## What's Inside Our package
 
 ### 📁 icons/
 
-- svg files for button icons and dolbyio logo
+- svg files for button icons and dolbyio logo with the aichatforest.com logo
 
 ### 📁 scripts/
 
